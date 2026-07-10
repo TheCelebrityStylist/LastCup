@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type Dispatch, type SetStateAction } from "react";
 import {
   calculateWhatIfDrink,
   commonDrinks,
   defaultSettings,
-  formatDecimalHour,
   getCaffeineState,
   type LoggedDrink,
   type Sensitivity,
@@ -245,7 +244,7 @@ export default function WebAppClient() {
               <div className="rounded-[2.5rem] bg-white p-6 shadow-2xl shadow-black/5 md:p-8">
                 <div className="flex items-center justify-between gap-4">
                   <h2 className="text-3xl font-black tracking-[-0.04em]">Add a drink</h2>
-                  {!premiumPreview && <span className="rounded-full bg-[#f7f2e9] px-4 py-2 text-sm font-black text-[#6b6256]">{FREE_DRINK_LIMIT - todayDrinks.length} free left</span>}
+                  {!premiumPreview && <span className="rounded-full bg-[#f7f2e9] px-4 py-2 text-sm font-black text-[#6b6256]">{Math.max(0, FREE_DRINK_LIMIT - todayDrinks.length)} free left</span>}
                 </div>
 
                 <div className="mt-6 grid gap-4 md:grid-cols-[1fr_0.7fr_0.7fr]">
@@ -378,7 +377,7 @@ function Metric({ label, value }: { label: string; value: string }) {
   );
 }
 
-function DrinkLog({ drinks, setDrinks }: { drinks: LoggedDrink[]; setDrinks: React.Dispatch<React.SetStateAction<LoggedDrink[]>> }) {
+function DrinkLog({ drinks, setDrinks }: { drinks: LoggedDrink[]; setDrinks: Dispatch<SetStateAction<LoggedDrink[]>> }) {
   return (
     <div className="rounded-[2.5rem] bg-white p-6 shadow-2xl shadow-black/5 md:p-8">
       <h2 className="text-3xl font-black tracking-[-0.04em]">Drinks</h2>
