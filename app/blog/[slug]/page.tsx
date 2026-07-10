@@ -6,8 +6,9 @@ export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const post = getPost(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPost(slug);
 
   if (!post) {
     return {
@@ -22,8 +23,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = getPost(params.slug);
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = getPost(slug);
 
   if (!post) {
     return (
@@ -62,7 +64,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </div>
         </div>
 
-        <div className="prose prose-lg mt-14 max-w-none prose-headings:font-black prose-headings:tracking-[-0.04em] prose-p:leading-8 prose-p:text-[#4f473f]">
+        <div className="mt-14 max-w-none">
           {post.sections.map((section) => (
             <section key={section.heading} className="mt-12">
               <h2 className="text-4xl font-black leading-[1] tracking-[-0.04em]">{section.heading}</h2>
