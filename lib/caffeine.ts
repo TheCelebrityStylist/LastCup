@@ -114,7 +114,7 @@ export function estimateClearTime(drinks: LoggedDrink[], currentHour: number, se
   return currentHour + additionalHours;
 }
 
-export function getRecommendation(activeMg: number, clearHourDecimal: number, settings: UserSettings): Recommendation {
+export function getStateRecommendation(activeMg: number, clearHourDecimal: number, settings: UserSettings): Recommendation {
   const bedtime = toDecimalHour(settings.bedtimeHour, settings.bedtimeMinute);
   const clearComparedToBedtime = clearHourDecimal - bedtime;
 
@@ -166,7 +166,7 @@ export function getCaffeineState(drinks: LoggedDrink[], currentHour: number, set
   const activeMg = Math.round(calculateActiveCaffeine(drinks, currentHour, settings));
   const totalMg = calculateDailyTotal(drinks);
   const clearHourDecimal = estimateClearTime(drinks, currentHour, settings);
-  const recommendation = getRecommendation(activeMg, clearHourDecimal, settings);
+  const recommendation = getStateRecommendation(activeMg, clearHourDecimal, settings);
 
   return {
     activeMg,
@@ -204,7 +204,7 @@ export function getClearTimeLabel(caffeineMg: number, consumedHour: number, thre
   return formatDecimalHour(consumedHour + hours);
 }
 
-export function getRecommendationLegacy(caffeineMg: number, consumedHour: number, bedtime = 22.5) {
+export function getRecommendation(caffeineMg: number, consumedHour: number, bedtime = 22.5) {
   const clearHours = consumedHour + hoursToThreshold(caffeineMg);
 
   if (caffeineMg <= 35) {
@@ -230,5 +230,4 @@ export function getRecommendationLegacy(caffeineMg: number, consumedHour: number
   };
 }
 
-export const getRecommendationForSingleDrink = getRecommendationLegacy;
-export const getRecommendation = getRecommendationLegacy;
+export const getRecommendationForSingleDrink = getRecommendation;
