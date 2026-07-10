@@ -3,8 +3,8 @@ import Link from "next/link";
 import { blogPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "Last Cup Blog — Coffee, Caffeine and Sleep Guides",
-  description: "SEO-focused guides about caffeine timing, coffee before bed, and how to decide when your last cup should be.",
+  title: "Coffee and Sleep Guides — Last Cup",
+  description: "Helpful guides about caffeine timing, coffee before bed, and deciding when your last cup should be.",
 };
 
 export default function BlogPage() {
@@ -13,18 +13,18 @@ export default function BlogPage() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-8">
         <Link href="/" className="text-xl font-black tracking-[-0.03em]">Last Cup</Link>
         <div className="flex gap-4 text-sm font-black text-[#6b6256]">
-          <Link href="/app">Web App</Link>
+          <Link href="/app">Coffee Clock</Link>
           <Link href="/#pricing">Pricing</Link>
         </div>
       </nav>
 
       <section className="mx-auto max-w-6xl px-6 py-16">
-        <p className="text-sm font-black uppercase tracking-[0.2em] text-[#8f6a38]">SEO engine</p>
+        <p className="text-sm font-black uppercase tracking-[0.2em] text-[#8f6a38]">Guides</p>
         <h1 className="mt-4 max-w-4xl text-6xl font-black leading-[0.93] tracking-[-0.06em] md:text-8xl">
-          Coffee timing guides built to answer real searches.
+          Helpful guides for coffee and sleep.
         </h1>
         <p className="mt-8 max-w-2xl text-xl leading-9 text-[#6b6256]">
-          Last Cup will use content as a serious acquisition channel: practical, search-focused guides that lead into the calculator and web app.
+          Clear answers to common caffeine questions, with Coffee Clock when you need a personal estimate.
         </p>
       </section>
 
